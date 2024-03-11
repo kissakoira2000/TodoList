@@ -1,26 +1,24 @@
-
 import React from 'react';
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-material.css";
 
 export default function TodoList(props) {
     return (
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {props.todos.map((todo, index) => (
-                        <tr key={index}>
-                            <td>{todo.desc}</td>
-                            <td>{todo.date}</td>
-                            <td><button onClick={() => props.handleDelete(index)}>Delete</button></td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div
+            className="ag-theme-material"
+            style={{
+                height: '700px',
+                width: '400px',
+                margin: 'auto',
+            }}
+        >
+            <AgGridReact
+                columnDefs={props.columns}
+                rowData={props.todos}
+
+            >
+            </AgGridReact>
         </div>
     )
 }
