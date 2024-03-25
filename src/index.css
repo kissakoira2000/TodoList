@@ -1,12 +1,11 @@
 h1 {
-  background-color: #000000;
   min-height: 20vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 table {
@@ -20,11 +19,6 @@ fieldset {
   justify-content: center;
   border-style: solid;
   padding: 20px;
-}
-
-.container2 {
-  align-items: center;
-  justify-content: center;
 }
 
 td {

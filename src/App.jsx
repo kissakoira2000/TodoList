@@ -7,11 +7,17 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
 import dayjs from 'dayjs';
+import { Container } from '@mui/material';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+
+
 
 function App() {
   const [desc, setDesc] = useState('');
   const [todos, setTodos] = useState([]);
   const [date, setDate] = useState(dayjs());
+  const [tablevalue, setTableValue] = useState(0);
 
   const handleChange = (event) => {
     setDesc(event.target.value);
@@ -32,17 +38,26 @@ function App() {
   ]
 
   return (
-    <>
-      <div>
-        <h1>Simple Todolist</h1>
-        <div className="container2">
-        </div>
+    <Container>
+      <Tabs value={tablevalue} onChange={(e, newValue) => setTableValue(newValue)} centered>
+        <Tab label="Home" />
+        <Tab label="To do" />
+      </Tabs>
+      {tablevalue === 0 && (
         <div>
-          <TodoListForm handleChange={handleChange} addTodo={addTodo} desc={desc} date={date} setDate={setDate} />
-          <TodoTable todos={todos} columns={columns} handleDelete={handleDelete} />
+          <h1>Helloooo</h1>
         </div>
-      </div >
-    </>
+      )}
+      {tablevalue === 1 && (
+        <div>
+          <h1>Simple Todolist</h1>
+          <div>
+            <TodoListForm handleChange={handleChange} addTodo={addTodo} desc={desc} date={date} setDate={setDate} />
+            <TodoTable todos={todos} columns={columns} handleDelete={handleDelete} />
+          </div>
+        </div>
+      )}
+    </Container >
   );
 }
 
