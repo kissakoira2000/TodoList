@@ -1,5 +1,8 @@
-
 import React from "react";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers';
+import TextField from '@mui/material/TextField';
 
 export default function TodoListForm(props) {
     return (
@@ -9,7 +12,13 @@ export default function TodoListForm(props) {
                 <p>Description:</p>
                 <input placeholder="Description" onChange={props.handleChange} value={props.desc} />
                 <p>Date:</p>
-                <input type="text" value={props.date} onChange={e => props.setDate(e.target.value)} />
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                        value={props.date}
+                        onChange={props.setDate}
+                        renderInput={(params) => <TextField {...params} />}
+                    />
+                </LocalizationProvider>
                 <button onClick={props.addTodo}>Add</button>
             </fieldset>
         </div>
